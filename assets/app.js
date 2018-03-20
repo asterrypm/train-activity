@@ -13,22 +13,22 @@
   var trainDatabase = firebase.database();
 
 //Add on click for Submit button for new train
-  $("#addTrain").on("click"),function(event) {
+  $("#addTrain").on("click",function() {
   	event.preventDefault();
  
 
  //Create variables to collect user input
 	var tnName = $("#train-name-input").val().trim();
 	var tnDestination = $("#destination-input").val().trim();
-	var tnFirstTrain = $("#firstTrain-input").val().trim();
+	var tnFirstTrain = moment($("#firstTrain-input").val().trim(),"HH:mm").subtract(10,"years").format("x");
 	var tnFrequency = $("#frequency-input").val().trim();
-	
- //Create a local 'temporary' object for holding employee data
+
+//Create a local 'temporary' object for holding train data
  var newTrain = {
- 	name: tnName,
- 	destination: tnDestination,
- 	firstTrain: tnFirstTrain,
- 	frequency: tnFrequency
+    name: tnName,
+    destination: tnDestination,
+  	firstTrain: tnFirstTrain,
+  	frequency: tnFrequency
  	
  };
 
@@ -50,11 +50,11 @@
  $("#frequency-input").val("");
 
 //Calculate next train arrival
- return false;
-};
+  return false;
+});
 
 //Create Firebase event for adding train to database and adding a row to the html
-database.ref().on("child_added",function(childSnapshot, prevChildKey){
+trainDatabase.ref().on("child_added",function(childSnapshot, prevChildKey) {
 	
 console.log(childSnapshot.val());
 
@@ -65,17 +65,17 @@ var tnDestination = childSnapshot.val().destination;
 var tnFirstTrain = childSnapshot.val().firstTrain;
 var tnFrequency = childSnapshot.val().frequency;
 
-//Train info
-console.log(tnName);
-console.log(tnDestination);
-console.log(tnFirstTrain);
-console.log(tnFrequency);
+var remainder = moment().diff(moment.unix(tnFirstTrain),"minutes")%tnFrequency;
+var minutes =tnFrequency - remainder;
+var tnArrival = moment().add(minutes,"m").format("hh:mm A");
+
+console.log(remainder);
+console.log(minutes);
+console.log(tnArrival);
 
 
-
-
-$("#train-table > tbody").append("<tr><td>" + tnName + "<td><td>" + tnDestination +
-	"</td><td>" + tnFrequency + "</td></tr>");
+$("#train-table > tbody").append("<tr><td>" + tnName + "</td><td>" + tnDestination +
+	"</td><td>" + tnFrequency + "</td><td>" + tnArrival + "</td><td>" + minutes + "</td></tr>");
 	
 
 

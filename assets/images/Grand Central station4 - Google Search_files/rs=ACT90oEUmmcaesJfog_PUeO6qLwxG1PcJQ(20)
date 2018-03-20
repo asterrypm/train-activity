@@ -1,9 +1,0 @@
-/* _GlobalPrefix_ */
-/* _Module_:spt */
-try{
-uv_l6("spt");var uv_dX=function(a){this.H=a};uv_dX.prototype.getTile=function(a,b,c,d,e,f,g){uv_s2(a)||(e=uv_d(this.R,this,a,e));var h=null,l=!1;this.H.get(function(f,n){l||(h=f.getTile(a,b,c,d,n.Qa(e,"spts-get-tile"),n,g))},f);return function(){l=!0;h&&h()}};uv_dX.prototype.R=function(a,b,c){if(c&&!uv_s2(a)){var d=new uv_4E,e=uv_zk(uv_gB(uv_fB(d)));uv_Ik(e,c.width);uv_Jk(e,c.height);uv_NF(a,d)}b(c)};var uv_s2=function(a){return!!a.Db()&&uv_o(uv_eB(a.Db()).getCamera(),2)};uv_dX.prototype.zc=function(){};
-var uv_t2=function(a,b,c){a(new uv_dX(c))};var uv_u2=function(a){uv_l.apply(this,arguments)};uv_xz(uv_u2,uv_l);uv_u2.prototype.initialize=function(){uv_V("SPTS",uv_t2)};uv_3(uv_u2);
-uv_k6("spt");uv_m6();
-}catch(e){_DumpException(e)}
-/* _GlobalSuffix_ */
-// Google Inc.
