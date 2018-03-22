@@ -28,6 +28,11 @@ img.bg {
   position: absolute;
  }
 
+ .form-control {
+  background-color: transparent;
+
+ }
+
 .container {
 	width: 960px;
 	margin: 0 auto;
@@ -54,6 +59,11 @@ input[type=text], select {
     box-sizing: border-box;
 
 }
+
+.panel-primary {
+  background-color: transparent;
+
+  }
 
 .jumbotron {
   background-color: transparent;
@@ -84,7 +94,7 @@ div {
 }
 
 div.panel-body {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .scroll-left {
